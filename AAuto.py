@@ -194,15 +194,15 @@ class MetricsCollector:
     def record_total_profit(self, profit):
         """Record total profit at a point in time"""
         self.metrics["total_profit_history"].append(profit)
-276|
-277|class AlphaVantageAPI:
-278|    """Wrapper for Alpha Vantage API with rate limiting and caching"""
-279|    
-280|    def __init__(self, api_key=API_KEY, metrics_collector=None):
-281|        self.api_key = api_key
-282|        self.cache = APICache()
-283|        self.metrics = metrics_collector
-284|        self.executor = ThreadPoolExecutor(max_workers=BATCH_SIZE)
+
+class AlphaVantageAPI:
+    """Wrapper for Alpha Vantage API with rate limiting and caching"""
+    
+    def __init__(self, api_key=API_KEY, metrics_collector=None):
+        self.api_key = api_key
+        self.cache = APICache()
+        self.metrics = metrics_collector
+        self.executor = ThreadPoolExecutor(max_workers=BATCH_SIZE)
         
     @RateLimiter(MAX_REQUESTS_PER_MINUTE)
     def get_intraday_data(self, symbol, interval="1min", output_size="compact"):
@@ -448,7 +448,6 @@ class TechnicalAnalyzer:
             return "DOWNTREND"
         else:
             return "SIDEWAYS"
-546|
 
 class MarketSentiment:
     """Analyzes market sentiment using various indicators and news sources"""
