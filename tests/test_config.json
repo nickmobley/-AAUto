@@ -1,0 +1,133 @@
+{
+  "system": {
+    "mode": "test",
+    "log_level": "DEBUG",
+    "test_mode": true,
+    "use_mocks": true,
+    "backtest_data_path": "./tests/data/backtest_data",
+    "output_dir": "./tests/output"
+  },
+  "api": {
+    "provider": "alpha_vantage",
+    "key": "test_api_key",
+    "base_url": "https://www.alphavantage.co/query",
+    "rate_limit": {
+      "max_requests_per_minute": 5,
+      "pause_time": 12
+    },
+    "timeout": 10,
+    "retries": 3
+  },
+  "market_data": {
+    "symbols": ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"],
+    "timeframes": ["1min", "5min", "15min", "60min", "daily"],
+    "default_timeframe": "daily",
+    "history_size": 200,
+    "update_interval": 60
+  },
+  "portfolio": {
+    "initial_capital": 10000.0,
+    "max_positions": 5,
+    "currency": "USD",
+    "commission_rate": 0.001,
+    "slippage": 0.0005,
+    "tax_rate": 0.0
+  },
+  "risk_management": {
+    "max_position_size_percent": 0.2,
+    "max_portfolio_risk_percent": 0.5,
+    "stop_loss_percent": 0.05,
+    "trailing_stop_percent": 0.03,
+    "take_profit_percent": 0.1,
+    "max_drawdown_percent": 0.15,
+    "position_sizing_method": "fixed_percent",
+    "risk_per_trade_percent": 0.02
+  },
+  "strategies": {
+    "combined": {
+      "enabled": true,
+      "combination_method": "weighted_average",
+      "min_confidence": 0.6
+    },
+    "momentum": {
+      "enabled": true,
+      "weight": 0.33,
+      "parameters": {
+        "fast_period": 12,
+        "slow_period": 26,
+        "signal_period": 9,
+        "rsi_period": 14,
+        "rsi_overbought": 70,
+        "rsi_oversold": 30,
+        "volume_factor": 1.5,
+        "lookback_periods": [5, 10, 20],
+        "min_momentum_threshold": 0.02
+      }
+    },
+    "mean_reversion": {
+      "enabled": true,
+      "weight": 0.33,
+      "parameters": {
+        "ma_type": "EMA",
+        "short_period": 10,
+        "medium_period": 20,
+        "long_period": 50,
+        "std_dev_multiplier": 2.0,
+        "min_reversion_threshold": 0.03,
+        "max_samples": 100
+      }
+    },
+    "trend_following": {
+      "enabled": true,
+      "weight": 0.34,
+      "parameters": {
+        "fast_ma_period": 20,
+        "slow_ma_period": 50,
+        "adx_period": 14,
+        "adx_threshold": 25,
+        "trend_strength_weight": 0.6,
+        "volume_weight": 0.4,
+        "min_trend_duration": 5
+      }
+    }
+  },
+  "machine_learning": {
+    "enabled": true,
+    "model_type": "random_forest",
+    "prediction_horizon": 5,
+    "train_test_split": 0.8,
+    "features": [
+      "price_change",
+      "volume_change",
+      "rsi",
+      "macd",
+      "bollinger_band_position"
+    ],
+    "hyperparameters": {
+      "n_estimators": 100,
+      "max_depth": 5,
+      "random_state": 42
+    },
+    "model_path": "./tests/models/test_model.pkl",
+    "retrain_interval": 30
+  },
+  "execution": {
+    "enabled": false,
+    "simulation_mode": true,
+    "order_types": ["MARKET", "LIMIT"],
+    "default_order_type": "MARKET",
+    "execution_delay": 0.5
+  },
+  "reporting": {
+    "save_trades": true,
+    "performance_metrics": [
+      "total_return",
+      "sharpe_ratio",
+      "max_drawdown",
+      "win_rate"
+    ],
+    "plot_performance": true,
+    "report_interval": 10
+  }
+}
+

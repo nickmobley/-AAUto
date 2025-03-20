@@ -1,3 +1,94 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+pytestdebug.log
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+env.bak/
+venv.bak/
+
+# Local development settings
+.env
+.envrc
+*.local
+config.local.json
+settings.local.yaml
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.pydevproject
+.settings/
+
+# Testing and coverage
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+nosetests.xml
+coverage/
+
+# Logs and temporary files
+logs/
+*.log
+aauto.log
+temp/
+tmp/
+*.tmp
+
+# Project-specific artifacts
+performance_metrics.json
+alpha_vantage_cache/
+trained_models/
+backtest_results/
+simulation_data/
+
+# Secrets and credentials
+credentials.json
+secrets.yaml
+api_keys.json
+.secrets/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

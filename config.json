@@ -1,0 +1,268 @@
+{
+  "api": {
+    "alpha_vantage": {
+      "api_key": "YOUR_ALPHA_VANTAGE_API_KEY",
+      "base_url": "https://www.alphavantage.co/query",
+      "rate_limit": {
+        "calls_per_minute": 5,
+        "max_daily_calls": 500
+      },
+      "timeout_seconds": 30,
+      "retry": {
+        "max_attempts": 3,
+        "backoff_factor": 2
+      },
+      "cache_settings": {
+        "enabled": true,
+        "expiry_minutes": 60,
+        "max_cache_size_mb": 100
+      }
+    },
+    "trading_platform": {
+      "name": "YOUR_BROKER_NAME",
+      "api_key": "YOUR_BROKER_API_KEY",
+      "api_secret": "YOUR_BROKER_API_SECRET",
+      "base_url": "YOUR_BROKER_API_URL",
+      "paper_trading": true
+    }
+  },
+  "risk_management": {
+    "max_position_size_percent": 5.0,
+    "max_total_equity_risk_percent": 25.0,
+    "stop_loss": {
+      "percent": 2.0,
+      "trailing": {
+        "enabled": true,
+        "activation_percent": 1.0
+      }
+    },
+    "take_profit": {
+      "percent": 3.0,
+      "partial_exit": [
+        {
+          "at_percent": 1.5,
+          "size_percent": 30
+        },
+        {
+          "at_percent": 2.5,
+          "size_percent": 30
+        }
+      ]
+    },
+    "max_drawdown_percent": 15.0,
+    "correlation_limit": 0.7,
+    "max_open_positions": 10,
+    "max_positions_per_sector": 3,
+    "daily_loss_limit_percent": 3.0,
+    "weekly_loss_limit_percent": 7.0
+  },
+  "trading": {
+    "market_hours": {
+      "start_time": "09:30:00",
+      "end_time": "16:00:00",
+      "timezone": "America/New_York",
+      "weekend_trading": false
+    },
+    "instruments": {
+      "stocks": ["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
+      "etfs": ["SPY", "QQQ", "IWM"],
+      "forex": ["EUR/USD", "USD/JPY", "GBP/USD"],
+      "crypto": ["BTC/USD", "ETH/USD"]
+    },
+    "strategies": {
+      "momentum": {
+        "enabled": true,
+        "lookback_period": 14,
+        "threshold": 0.2,
+        "holding_period": 5
+      },
+      "mean_reversion": {
+        "enabled": true,
+        "zscore_threshold": 2.0,
+        "lookback_period": 20
+      },
+      "trend_following": {
+        "enabled": true,
+        "ema_short": 9,
+        "ema_long": 21,
+        "atr_period": 14,
+        "atr_multiplier": 2.0
+      },
+      "breakout": {
+        "enabled": false,
+        "lookback_period": 20,
+        "volume_factor": 1.5
+      }
+    },
+    "execution": {
+      "order_types": ["market", "limit", "stop", "trailing_stop"],
+      "default_order_type": "limit",
+      "limit_order_offset_percent": 0.1,
+      "position_sizing_method": "percent_risk",
+      "slippage_model": {
+        "type": "percent",
+        "value": 0.05
+      }
+    },
+    "timeframes": {
+      "analysis": ["1m", "5m", "15m", "1h", "1d"],
+      "primary_timeframe": "1h"
+    }
+  },
+  "technical_analysis": {
+    "indicators": {
+      "rsi": {
+        "enabled": true,
+        "period": 14,
+        "overbought": 70,
+        "oversold": 30
+      },
+      "macd": {
+        "enabled": true,
+        "fast_period": 12,
+        "slow_period": 26,
+        "signal_period": 9
+      },
+      "bollinger_bands": {
+        "enabled": true,
+        "period": 20,
+        "std_dev": 2.0
+      },
+      "moving_averages": {
+        "enabled": true,
+        "periods": [9, 21, 50, 200]
+      },
+      "volume_profile": {
+        "enabled": true,
+        "lookback_periods": 30
+      },
+      "fibonacci_retracement": {
+        "enabled": false,
+        "levels": [0.236, 0.382, 0.5, 0.618, 0.786]
+      }
+    },
+    "patterns": {
+      "candlestick": {
+        "enabled": true,
+        "patterns": ["engulfing", "doji", "hammer", "shooting_star"]
+      },
+      "chart": {
+        "enabled": true,
+        "patterns": ["double_top", "double_bottom", "head_and_shoulders"]
+      }
+    }
+  },
+  "machine_learning": {
+    "models": {
+      "price_prediction": {
+        "enabled": true,
+        "model_type": "lstm",
+        "features": ["price", "volume", "technical_indicators"],
+        "lookback_periods": 60,
+        "prediction_periods": 5,
+        "training": {
+          "epochs": 100,
+          "batch_size": 32,
+          "test_split": 0.2,
+          "validation_split": 0.1
+        },
+        "hyperparameters": {
+          "learning_rate": 0.001,
+          "dropout": 0.2,
+          "lstm_units": [64, 32]
+        }
+      },
+      "pattern_recognition": {
+        "enabled": true,
+        "model_type": "cnn",
+        "patterns": ["breakout", "reversal", "continuation"],
+        "confidence_threshold": 0.7
+      },
+      "sentiment_analysis": {
+        "enabled": true,
+        "sources": ["news", "social_media", "earnings_calls"],
+        "model_type": "bert",
+        "update_frequency": "1h"
+      }
+    },
+    "optimization": {
+      "feature_selection": {
+        "method": "recursive_feature_elimination",
+        "n_features": 10
+      },
+      "cross_validation": {
+        "folds": 5,
+        "shuffle": true
+      },
+      "retraining": {
+        "frequency": "weekly",
+        "min_samples": 1000
+      }
+    }
+  },
+  "news_analysis": {
+    "sources": [
+      "bloomberg",
+      "reuters",
+      "yahoo_finance",
+      "seeking_alpha"
+    ],
+    "keywords": ["merger", "acquisition", "earnings", "guidance", "forecast"],
+    "update_frequency": "15m",
+    "sentiment_weighting": 0.3
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "aauto.log",
+    "max_size_mb": 10,
+    "backup_count": 5,
+    "include_debug_in_file": true,
+    "console_output": true
+  },
+  "metrics": {
+    "performance": {
+      "file": "performance_metrics.json",
+      "calculate_sharpe": true,
+      "calculate_sortino": true,
+      "calculate_max_drawdown": true,
+      "benchmark": "SPY"
+    },
+    "trade_history": {
+      "file": "trade_history.csv",
+      "fields": ["timestamp", "symbol", "action", "price", "size", "fees", "pnl"]
+    }
+  },
+  "notifications": {
+    "email": {
+      "enabled": false,
+      "smtp_server": "",
+      "port": 587,
+      "username": "",
+      "password": "",
+      "recipients": ["your_email@example.com"]
+    },
+    "sms": {
+      "enabled": false,
+      "provider": "twilio",
+      "account_sid": "",
+      "auth_token": "",
+      "from_number": "",
+      "to_number": ""
+    },
+    "events": {
+      "trade_executed": true,
+      "take_profit_hit": true,
+      "stop_loss_hit": true,
+      "daily_summary": true,
+      "error_alerts": true
+    }
+  },
+  "system": {
+    "threads": 4,
+    "memory_limit_mb": 2048,
+    "data_directory": "./data",
+    "model_directory": "./models",
+    "temp_directory": "./temp"
+  }
+}
+

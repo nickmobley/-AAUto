@@ -1,4 +1,11 @@
 """
+Analytics package for market data analysis.
+
+This package contains modules for technical analysis and other
+market data analysis functionality.
+"""
+
+"""
 Analytics Module - Core analytics engine for real-time data processing and insights generation.
 
 This module provides comprehensive analytics capabilities including:
